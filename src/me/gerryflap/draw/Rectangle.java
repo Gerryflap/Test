@@ -9,21 +9,12 @@ import org.lwjgl.util.Color;
  * Created by Gerryflap on 11/14/2014.
  */
 public class Rectangle implements DrawObject{
-    private int top;
-    private int left;
-    private int bottom;
-    private int right;
     private int width;
     private int height;
     private Color color;
     private Rekt rekt;
     private Position position;
     public Rectangle(int left, int top, int right, int bottom, Color color){
-        this.top = top;
-        this.left = left;
-        System.out.println(this.top);
-        this.bottom = bottom;
-        this.right = right;
         this.width = right - left;
         this.height = top-bottom;
         this.color = color;
@@ -33,21 +24,22 @@ public class Rectangle implements DrawObject{
     public void draw(){
         GL11.glColor3b(color.getRedByte(), color.getGreenByte(), color.getBlueByte());
         // draw quad
+        int left = this.getRekt().getLeft();
+        int top = this.getRekt().getTop();
+        int right = this.getRekt().getRight();
+        int bottom = this.getRekt().getBottom();
         GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2i(this.left, this.bottom);
-        GL11.glVertex2i(this.right, this.bottom);
-        GL11.glVertex2i(this.right, this.top);
-        GL11.glVertex2i(this.left, this.top);
+        GL11.glVertex2i(left, bottom);
+        GL11.glVertex2i(right, bottom);
+        GL11.glVertex2i(right, top);
+        GL11.glVertex2i(left, top);
         GL11.glEnd();
     }
     public Rekt getRekt() {
         return this.rekt;
     }
     public void setPosition(int x, int y){
-        this.top = y;
-        this.left = x;
-        this.bottom = y + height;
-        this.right = x + width;
+        this.rekt.setPosition(y, x, y + this.height, x + this.width);
         this.position.setX(x);
         this.position.setY(y);
     }

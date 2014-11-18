@@ -27,8 +27,10 @@ public class Main {
         DrawController drawController = new DrawController(800, 800);
         ArrayList<DrawObject> drawObjects = new ArrayList<DrawObject>();
         for (int i = 0; i < 100; i++) {
-            drawObjects.add(new Circle((i * 100) % 900 +50, (i / 10) * 100 +50, 50, 50, new Color(0, i, 0)));
-            drawController.add(drawObjects.get(i));
+            if (drawController.getColliding(new Rekt((i * 100) % 900 +50, (i / 10) * 100 +50, (i * 100) % 900 +50, (i / 10) * 100 +50)) == null) {
+                drawObjects.add(new Circle((i * 100) % 900 + 50, (i / 10) * 100 + 50, 50, 50, new Color(0, i, 0)));
+                drawController.add(drawObjects.get(drawController.drawObjects.size()));
+            }
         }
         Rekt mouseRekt;
         DrawObject colliding;

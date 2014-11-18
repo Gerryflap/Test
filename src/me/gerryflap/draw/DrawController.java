@@ -48,8 +48,6 @@ public class DrawController {
     public DrawObject getColliding(Rekt rekt){
         for (int i = 0; i < this.drawObjects.size(); i++){
             if (this.drawObjects.get(i).getRekt().collides(rekt)){
-                System.out.println(this.drawObjects.get(i).getPosition().getX());
-                System.out.println(this.drawObjects.get(i).getPosition().getY());
                 return this.drawObjects.get(i);
             }
         }

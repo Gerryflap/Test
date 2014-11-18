@@ -38,5 +38,11 @@ public class Rekt {
         right = (rekt.getRight() > this.left)&& (rekt.getRight() < this.right);
         return ((right || left)&&(top || bottom));
     }
+    public void setPosition(int top, int left, int bottom, int right){
+        this.top = top;
+        this.left = left;
+        this.bottom = bottom;
+        this.right = right;
+    }
 
 }
